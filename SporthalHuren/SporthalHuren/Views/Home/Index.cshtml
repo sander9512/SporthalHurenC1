@@ -1,0 +1,61 @@
+﻿@model string
+
+@{
+    ViewData["Title"] = "Home";
+}
+
+
+<div class="container-fluid" id="carousel-container">
+    <div class="container center-block" id="carousel-content">
+        <div id="Carousel" class="carousel slide" data-ride="carousel" data-interval="4000">
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <img src="~/images/Zaalvoetbal.jpg" alt="Zaalvoetbal" class="carousel-image" />
+                </div>
+                <div class="item">
+                    <img src="~/images/Basketball.jpg" alt="Basketbal" class="carousel-image" />
+                </div>
+                <div class="item">
+                    <img src="~/images/Judo.jpg" alt="Judo" class="carousel-image" />
+                </div>
+                <div class="item">
+                    <img src="~/images/Turnen.jpg" alt="Turnen" class="carousel-image" />
+                </div>
+                <div class="item">
+                    <img src="~/images/Volleyball.jpg" alt="Volleybal" class="carousel-image" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container text-center content">
+    <h1>Vind een sporthal</h1>
+    <br />
+    <form asp-action="Filter" asp-controller="Halls" method="post">
+        <div class="form-group">
+            <input type="text" class="form-control" id="InputCity" name="SelectedLocation" placeholder="Plaats">
+            <br />
+            <small id="CityHelp" class="form-text text-muted">Voer een stad in:</small>
+        </div>
+        <!--br />
+        <div class="form-group">
+            <select class="form-control" id="LocationFiltered">
+                <option>Alle sporten</option>
+                <option>Voetbal</option>
+                <option>Volleybal</option>
+                <option>Basketbal</option>
+                <option>Turnen</option>
+                <option>Judo</option>
+            </select>
+            <br />
+            <small id="SportsHelp" class="form-text text-muted" >Kies een sport</small>
+            </div-->
+            <button type="submit" class="btn-default btn custom-button">
+                Zoek
+            </button>
+    </form>
+    <br />  
+</div>
+
+

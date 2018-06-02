@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewData["Title"] = "Contact";
+}
+
+<div class="container content" id="contact-container">
+    <h2>@ViewData["Title"]</h2>
+
+    <address>
+        Avans Hogeschool<br />
+        Lovensdijkstraat 61<br />
+        4800 RA, Breda<br />
+        <br />
+        <b><abbr title="Phone">Telefoon:</abbr></b>
+        +31637432892
+    </address>
+
+    <address>
+        <strong>Support:</strong> <br />
+        <a href="mailto:jmc.waters@student.avans.nl">jmc.waters@student.avans.nl</a><br />
+        <a href="mailto:mh.smans@student.avans.nl">mh.smans@student.avans.nl</a><br />
+        <a href="mailto:onoor@student.avans.nl">onoor@student.avans.nl</a><br />
+        <a href="mailto:k.rahimimoradali@student.avans.nl">k.rahimimoradali@student.avans.nl</a><br />
+        <a href="mailto:sc.schep@student.avans.nl">sc.schep@student.avans.nl</a><br />
+    </address>
+</div>
+ <div class="container content" id="maps-container">
+        <div id="map"></div>
+        <script>
+            var map;
+            function initMap() {
+                var myLatLng = { lat: 51.585842, lng: 4.793270 };
+
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 15,
+                    center: myLatLng
+                });
+
+                var marker = new google.maps.Marker({
+                    position: myLatLng,
+                    map: map,
+                    title: 'Avans Hogeschool'
+                });
+
+            }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCsKsEnzy5vQgM-YC80_pbMpi1LPzGWdGU&callback=initMap" async defer>
+
+        </script>
+    </div>
+

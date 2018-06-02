@@ -1,0 +1,24 @@
+﻿@model SporthalHuren.Models.ViewModels.LoginModel
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = "_LoginLayout";
+}
+
+<div class="container text-center content">
+
+    <form asp-action="Login" asp-controller="Account" method="post">
+        <input type="hidden" asp-for="ReturnUrl" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+        <div class="form-group">
+            <input asp-for="Email" class="form-control" id="input-email" placeholder="E-mail adres" />
+        </div>
+        <span asp-validation-for="Password" class="text-danger"></span>
+        <div class="form-group">
+            <input asp-for="Password" class="form-control" id="input-password" placeholder="Wachtwoord" />
+        </div>
+        <button class="btn btn-primary custom-button2" type="submit">Inloggen</button>
+        <br />
+    </form>
+    <a class="small register-link" asp-action="register">Nog geen account? registreer hier</a>
+</div>

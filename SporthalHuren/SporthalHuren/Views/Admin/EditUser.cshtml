@@ -1,0 +1,55 @@
+﻿@model User
+
+@{ 
+    Layout = "_AdminLayout";
+    ViewBag.Title = "Bezoeker bewerken";
+}
+
+<div class="container content">
+    <form asp-action="EditUser" method="post">
+        <input type="hidden" asp-for="ID" />
+        <div class="form-group">
+            <label asp-for="Name">Naam</label>
+            <div><span asp-validation-for="Name" class="text-danger"></span></div>
+            <input asp-for="Name" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="DateOfBirth">Geboortedatum</label>
+            <div><span asp-validation-for="DateOfBirth" class="text-danger"></span></div>
+            <input type="date" asp-for="DateOfBirth" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Email">E-mailadres</label>
+            <div><span asp-validation-for="Email" class="text-danger"></span></div>
+            <input asp-for="Email" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="City">Woonplaats</label>
+            <div><span asp-validation-for="City" class="text-danger"></span></div>
+            <input asp-for="City" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="StreetName">Straat</label>
+            <div><span asp-validation-for="StreetName" class="text-danger"></span></div>
+            <input asp-for="StreetName" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="HouseNumber">Huisnummer</label>
+            <div><span asp-validation-for="HouseNumber" class="text-danger"></span></div>
+            <input asp-for="HouseNumber" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Zip">Postcode</label>
+            <div><span asp-validation-for="Zip" class="text-danger"></span></div>
+            <input asp-for="Zip" class="form-control" />
+        </div>
+        <div class="text-center">
+            <button class="btn btn-primary" type="submit">
+                Opslaan
+            </button>
+            <a asp-action="UserList" class="btn btn-default">
+                Annuleren
+            </a>
+        </div>
+    </form>
+</div>

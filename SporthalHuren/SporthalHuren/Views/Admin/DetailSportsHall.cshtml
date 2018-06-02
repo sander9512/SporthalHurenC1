@@ -1,0 +1,91 @@
+﻿@model  SporthalHuren.Models.ViewModels.EditSportsHallFormViewModel
+
+@{
+    Layout = "_AdminLayout";
+    ViewBag.Title = "Sporthal - Details";
+}
+
+
+<div class="container">
+    <input type="hidden" asp-for="@Model.Hall.ID" />
+    <input type="hidden" asp-for="@Model.Proprietor.ID" /> 
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="col-lg-10">
+                <h2 class="pull-left">Sporthal Gegevens</h2>
+                <a class="btn btn-sm btn-warning pull-right" asp-for="@Model.Hall.ID" asp-action="EditSportsHall" asp-controller="Admin" asp-route-sportHallId="@Model.Hall.ID">
+                    Bewerk
+                </a>
+            </div>
+            <h3>@Model.Hall.Name</h3>
+            <h4><strong>Adres</strong></h4>
+            <h5>@Model.Hall.StreetName @Model.Hall.HouseNumber </h5>
+            <h5>@Model.Hall.Zip @Model.Hall.City</h5>    
+            <h4><strong>Beschrijving van de sporthal</strong></h4>
+            @Model.Hall.Description
+
+            <h4><strong>Contact</strong></h4>
+            <a class="btn btn-sm btn-warning pull-right" asp-for="@Model.Hall.ID" asp-action="EditSportsHall" asp-controller="Admin" asp-route-sportHallId="@Model.Hall.ID">
+                Bewerk
+            </a>
+            @Model.Hall.Proprietor.Name
+            @Model.Hall.Proprietor.Email
+
+
+            @Model.Hall.Phone
+            
+        </div>
+        <div class="col-lg-6">
+            <h4><strong>Openingstijden</strong></h4>
+            <a class="btn btn-sm btn-warning pull-right" asp-action="EditSportsHall" asp-controller="Admin" asp-route-sportHallId="@Model.Hall.ID">
+                Bewerk
+            </a>
+            @foreach (var s in Model.Hall.Times)
+            {
+                <h5>@s.Day @s.TimeOpen tot @s.TimeClose</h5>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="container">
+<div class="row">
+    <div class="col-lg-6">
+        <h4><strong>Faciliteiten</strong></h4>
+        <a class="btn btn-sm btn-warning pull-right" asp-action="EditSportsHall" asp-controller="Admin" asp-route-sportHallId="@Model.Hall.ID">
+            Bewerk
+        </a>
+        <ul>
+            @foreach (var p in Model.Hall.SportsHallFacilities)
+            {
+                <li>@p.Facility.Name</li>
+            }
+        </ul>
+    </div>
+    <div class="col-lg-6">
+        <h4><strong>Activiteiten</strong></h4>
+        <a class="btn btn-sm btn-warning pull-right" asp-action="EditSportsHall" asp-controller="Admin" asp-route-sportHallId="@Model.Hall.ID">
+            Bewerk
+        </a>
+        <ul>
+            @foreach (var t in Model.Hall.SportsHallActivities)
+            {
+                <li>@t.Activity.Name</li>
+            }
+        </ul>
+    </div>
+    <div class="col-lg-6">
+        <h4><strong>Ruimtes</strong></h4>
+        <a class="btn btn-sm btn-warning pull-right" asp-action="EditSportsHall" asp-controller="Admin" asp-route-sportHallId="@Model.Hall.ID">
+            Bewerk
+        </a>
+        <ul>
+            @foreach (var r in Model.Hall.Rooms)
+            {
+                <li>@r.RoomNumber</li>
+            }
+        </ul>
+    </div>
+</div>
+
+</div>

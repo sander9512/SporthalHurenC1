@@ -1,0 +1,40 @@
+﻿@model SporthalHuren.Models.Domain.Booking
+@{
+    ViewData["Title"] = "Mijn Account";
+    Layout = "_UserLayout";
+
+}
+
+
+<div class="container content">
+    <div class="row">
+        <div class="col-lg-6">
+            <h3>Details reservering</h3>
+            <br />
+            <h4>@Model.Hall.Name</h4>
+            <br />
+            <h4>Adres</h4>
+            <p class="custom-text">@Model.Hall.City, @Model.Hall.StreetName @Model.Hall.HouseNumber</p>
+            <br />
+            <h4>Zaal en sport</h4>
+            <p class="custom-text">@Model.Activity.Name in @Model.Room.RoomNumber</p>
+            <br />
+            <h4>Datum en tijdstip</h4>
+            <p class="custom-text">@Model.Date.ToString("dd/MM/yyyy") van @Model.StartTime.ToString("HH:mm") tot @Model.EndTime.ToString("HH:mm")</p>
+            <br />
+            <h4>Status</h4>
+            @if(Model.Approved == 0)
+            {
+              <p class="custom-text">In afwachting van goedkeuring</p>
+            }
+            @if (Model.Approved == 1)
+            {
+              <p class="custom-text">Goedgekeurd</p>
+            }
+            @if (Model.Approved == 2)
+            {
+              <p class="custom-text">Geweigerd</p>
+            }
+        </div>
+    </div>
+</div>

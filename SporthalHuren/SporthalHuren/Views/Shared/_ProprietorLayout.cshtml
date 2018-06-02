@@ -1,0 +1,54 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - SporthalHuren</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/Styles.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather|Roboto+Slab" rel="stylesheet">
+
+    <script src="~/js/site.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+
+    <div class="admin-nav navbar-static-top">
+        <div class="container navbar-content">
+            <div class="navbar-header">
+                <a class="navbar-brand" id="admin-nav-brand">
+                    <img src="~/images/logo-white.png" />
+                </a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    @*<li><a asp-action="ProprietorList" id="admin-nav-link">Exploitanten</a></li>
+                    <li><a asp-action="SportsHallList" id="admin-nav-link">Sporthallen</a></li>
+                    <li><a asp-action="UserList" id="admin-nav-link">Bezoekers</a></li>*@
+                    <li><a asp-action="Logout" asp-controller="Account" id="admin-nav-link">Uitloggen</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="container body-content">
+        <div class="jumbotron custom-jumbotron">
+            @RenderBody()
+        </div>
+        <hr />
+        <footer class="text-center">
+            <p id="footer-text">&copy; 2017 - SporthalHuren</p>
+        </footer>
+    </div>
+</body>
+
+
+
+</html>
+

@@ -1,0 +1,109 @@
+﻿@model SporthalHuren.Models.ViewModels.SportsHallViewModel
+<div class="container content">
+    <form action="#" method="get">
+        <div class="row">
+            <div class="container text-center col-xs-12"><h2>Sporthallen</h2><br /></div>
+            <div class="col-xs-3">
+
+                <h4>Kies gewenste filters:</h4>
+
+                <div class="panel-group" id="accordion" style="margin-top: 20px">
+                    <div class="panel panel-default custom-panel">
+                        <div class="panel-heading custom-panel-heading">
+                            <h4 class="panel-title">
+                                Sport
+                            </h4>
+                        </div>
+                        <div class="panel-body">
+                            <select class="form-control" name="SelectedSport">
+                                <option value="">Toon alles</option>
+                                @foreach (var p in Model.ActivityNames)
+                                {
+                                    <option value=@p>@p</option>
+
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="panel panel-default custom-panel">
+                        <div class="panel-heading custom-panel-heading">
+                            <h4 class="panel-title">
+                                Locatie
+                            </h4>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <input name="SelectedLocation" type="text" class="form-control" placeholder="Naam van stad" value="@ViewBag.City">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div class="container text-center col-xs-6">
+                    <input type="submit" class="btn btn-primary custom-button2" value="Filter resultaten" />
+                </div>
+            </div>
+            <div class="col-xs-9">
+                <div class="row">
+                    <div class="col-xs-3 col-sm-2" style="text-align:right">
+                        <h4>Sorteer op:</h4>
+                    </div>
+                    <div class="col-xs-5">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <select class="form-control" name="SortBy">
+                                    <option value="0">A-Z</option>
+                                    <option value="1">Z-A</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @{
+                    if (Model.SportsHalls.Count() == 0)
+                    {
+                        <label>Zoek termen geven geen resultaten terug.</label>
+
+                    }
+                }
+
+                @foreach (var p in Model.SportsHalls)
+                {
+                    <div class="well" id="partial-well">
+                        <h3>
+                            @p.Name
+                        </h3>
+                        <br />
+                        <h4>Algemene Gegevens:</h4>
+                        <p class="custom-text">@p.StreetName   @p.HouseNumber   @p.City</p>
+                        <p class="custom-text">@p.Zip</p>
+                        <p class="custom-text">@p.Description</p>
+                        <br />
+                        <h4>Beschikbare sporten:</h4>
+                        <p class="custom-text">
+                            @foreach (var s in p.SportsHallActivities)
+                            {
+                                @s.Activity.Name
+                                @: ,
+
+
+                            }
+                        </p>
+                        <br />
+                        @Html.Partial("aspFilterSummary", p)
+                    </div>
+
+                }
+            </div>
+        </div>
+    </form>
+    <div page-model="@Model.PagingInfo" page-action="Filter" page-classes-enabled="true"
+         page-class="btn" page-class-normal="btn-default"
+         page-class-selected="btn-primary custom-button2" class="btn-group pull-right">
+    </div>
+</div>
+
+
+
+

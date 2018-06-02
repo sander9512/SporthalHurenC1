@@ -1,0 +1,26 @@
+﻿@model EditHallFacilitiesViewModel
+
+@{ 
+    Layout = "_AdminLayout";
+    ViewBag.Title = "Sporthal bewerken - Faciliteiten"; 
+}
+<div class="container content">
+    <form asp-controller="Admin" asp-action="EditHallFacilities" method="post">
+        <input type="hidden" value="@Model.SportsHallId" />
+        @for (int i = 0; i < Model.Facilities.Count; i++)
+        {
+            <input type="hidden" asp-for="@Model.Facilities[i].Facility.ID" />
+            <label asp-for="@Model.Facilities[i].Facility.Name" value="@Model.Facilities[i].Facility.Name">Faciliteit</label>
+            <input asp-for="@Model.Facilities[i].Facility.Name" value="@Model.Facilities[i].Facility.Name" class="form-control" />
+        }
+
+        <div class="text-center">
+            <button class="btn btn-primary" type="submit">
+                Opslaan
+            </button>
+            <a asp-action="EditSportsHall" asp-route-sportsHallId="@Model.SportsHallId" class="btn btn-default">
+                Annuleren
+            </a>
+        </div>
+    </form>
+</div>

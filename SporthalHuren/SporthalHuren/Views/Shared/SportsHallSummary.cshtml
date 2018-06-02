@@ -1,0 +1,24 @@
+﻿ @model SporthalHuren.Models.SportsHall
+<div class="well">
+    <h3>@Model.Name</h3>
+    <br>
+    <h4>Algemene Gegevens:</h4>
+    <p>@Model.StreetName   @Model.HouseNumber   @Model.City</p>
+    <p>@Model.Zip</p>
+    <p>@Model.Description</p>
+    <p><strong>Beschikbare sporten</strong></p>
+    @foreach(var s in Model.SportsHallActivities)
+    {
+       @s.Activity.Name
+       @: ,
+        
+
+    }
+    <br />
+    <form asp-controller="Halls" asp-action="Hall">
+    <br />
+    <input type="hidden" value="@Model.ID" name="ID"/>
+    <input type="submit" class="btn btn-primary custom-button2" value="Bekijk deze sporthal" />
+
+    </form>
+</div>

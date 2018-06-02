@@ -1,0 +1,30 @@
+﻿@model EditHallTimesViewModel
+
+@{ 
+    Layout = "_AdminLayout";
+    ViewBag.Title = "Sporthal bewerken - Openingstijden";
+}
+
+<div class="container content">
+    <form asp-controller="Admin" asp-action="EditHallTimes" method="post">
+        <input type="hidden" asp-for="@Model.SportsHallId" />
+        <input type="hidden" asp-for="@Model.TimeId" />
+        @for (int i = 0; i < Model.Times.Count; i++)
+        {
+            <input type="hidden" asp-for="@Model.Times[i].ID" />
+            <input type="hidden" asp-for="@Model.Times[i].Day" />
+            <label asp-for="@Model.Times[i].Day" value="@Model.Times[i].Day">@Model.Times[i].Day</label>
+            <input asp-for="@Model.Times[i].TimeOpen" value="@Model.Times[i].TimeOpen" class="form-control" />
+            <input asp-for="@Model.Times[i].TimeClose" value="@Model.Times[i].TimeClose" class="form-control" />
+        }
+
+        <div class="text-center">
+            <button class="btn btn-primary" type="submit">
+                Opslaan
+            </button>
+            <a asp-action="EditHallTimes" class="btn btn-default">
+                Annuleren
+            </a>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,68 @@
+﻿@model SporthalHuren.Models.ViewModels.BookingViewModel
+
+
+@{
+    ViewData["Title"] = "User";
+    Layout = "_UserLayout";
+}
+
+<div class="container text-center content">
+    <h2>Nieuwe reservering bij @Model.Hall.Name</h2>
+    <br />
+    @*<div class="alert alert-">
+        @if (ViewData.ModelState["Error"] == null)
+        {
+            <strong></strong>
+
+        }  else if (ViewData.ModelState["Error"].Errors.Count > 0)
+        {
+            <strong>@ViewData.ModelState["Error"].Errors.First().ErrorMessage</strong>
+        }
+    </div>*@
+    <form asp-action="CreateBooking" asp-controller="NormalUser" method="post">
+        <input type="hidden" name="CurrentSportsHall" value="@Model.Hall.ID" />
+        <input type="hidden" asp-for="@Model.Booking.ID" />
+        <div asp-validation-summary="All"></div>
+        <div class="form-group">
+            <label asp-for="@Model.Booking.Activity">Kies Activiteit:</label>
+            <br />
+            <select class="form-control" id="input-email" name="SelectedActivity">
+                @foreach (var a in Model.Hall.SportsHallActivities)
+                {
+                    <option value="@a.Activity.ID">@a.Activity.Name</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Booking.Room">Kies Zaal:</label>
+            <br />
+            <select class="form-control" id="input-email" name="SelectedRoom">
+                @foreach (var a in Model.Hall.Rooms.OrderBy(t => t.RoomNumber))
+                {
+                    <option value="@a.ID">@a.RoomNumber</option>
+                }
+            </select>
+        </div>
+        <div class="form-group" id="input-email">
+            <label asp-for="@Model.Booking.Date">Datum:</label>
+            <br />
+            <input asp-for="@Model.Booking.Date" class="form-control date-picker" />
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Booking.StartTime">Start tijd:</label>
+            <br />
+            <input asp-for="@Model.Booking.StartTime" class="form-control timepicker-starttime" id="input-email" />
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Booking.EndTime">Eind tijd:</label>
+            <br />
+            <input asp-for="@Model.Booking.EndTime" class="form-control timepicker-endtime" id="input-email" />
+        </div>
+        <br />
+        <button class="btn btn-primary custom-button2" type="submit">Maak Boeking</button>
+    </form>
+</div>
+
+
+
+

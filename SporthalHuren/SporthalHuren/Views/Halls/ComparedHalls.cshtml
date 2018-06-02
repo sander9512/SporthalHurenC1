@@ -1,0 +1,154 @@
+﻿@model SporthalHuren.Models.ViewModels.CompareHallsViewModel
+
+<div class="container col-xs-12">
+    <div class="container col-xs-6" id="partial-well">
+        <div class="well">
+            <h3>
+                @Model.SportsHallId.Name
+            </h3>
+            <br />
+            <h4>Adres:</h4>
+            <p class="custom-text">@Model.SportsHallId.StreetName @Model.SportsHallId.HouseNumber @Model.SportsHallId.City</p>
+            <p class="custom-text">@Model.SportsHallId.Zip</p>
+            <br />
+            <h4>Openingstijden:</h4>
+            <div class="container" id="openingstijden">
+                @foreach (var t in Model.SportsHallId.Times)
+            {
+                    <p class="custom-text"><strong>@t.Day:</strong> @t.TimeOpen tot: @t.TimeClose</p>
+                }
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-xs-3">
+                    <h4>Faciliteiten:</h4>
+                    <div class="container" id="openingstijden">
+                        @foreach (var f in Model.SportsHallId.SportsHallFacilities)
+                        {
+                            <p class="custom-text">@f.Facility.Name</p>
+                        }
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-xs-3">
+                    <h4>Sporten:</h4>
+                    <div class="container" id="openingstijden">
+                        @foreach (var f in Model.SportsHallId.SportsHallActivities)
+                        {
+                            <p class="custom-text">@f.Activity.Name</p>
+                        }
+                    </div>
+                </div>
+            </div>
+            <br />
+            <p class="custom-text">@Model.SportsHallId.Description</p>
+            <br />
+            <form asp-controller="Halls" asp-action="Hall">
+                <input type="hidden" value="@Model.SportsHallId.ID" name="ID" />
+                <input type="submit" class="btn btn-primary custom-button2" value="Bekijk deze sporthal" />
+            </form>
+        </div>
+    </div>
+    @if (Model.SecondSportsHallId != null)
+    {
+        <div class="container col-xs-6" id="partial-well">
+            <div class="well">
+                <h3>
+                    @Model.SecondSportsHallId.Name
+                </h3>
+                <br />
+                <h4>Adres:</h4>
+                <p class="custom-text">@Model.SecondSportsHallId.StreetName @Model.SecondSportsHallId.HouseNumber @Model.SecondSportsHallId.City</p>
+                <p class="custom-text">@Model.SecondSportsHallId.Zip</p>
+                <br />
+                <h4>Openingstijden:</h4>
+                <div class="container" id="openingstijden">
+                    @foreach (var t in Model.SecondSportsHallId.Times)
+                {
+                        <p class="custom-text"><strong>@t.Day:</strong> @t.TimeOpen tot: @t.TimeClose</p>
+                    }
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-xs-5">
+                        <div class="container">
+                            <h4>Faciliteiten:</h4>
+                            <div class="container" id="openingstijden">
+                                @foreach (var f in Model.SecondSportsHallId.SportsHallFacilities)
+                {
+                                    <p class="custom-text">@f.Facility.Name</p>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-5">
+                        <div class="container">
+                            <h4>Sporten:</h4>
+                            <div class="container" id="openingstijden">
+                                @foreach (var f in Model.SecondSportsHallId.SportsHallActivities)
+                {
+                                    <p class="custom-text">@f.Activity.Name</p>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <p class="custom-text">@Model.SecondSportsHallId.Description</p>
+                <br />
+                <form asp-controller="Halls" asp-action="Hall">
+                    <input type="hidden" value="@Model.SecondSportsHallId.ID" name="ID" />
+                    <input type="submit" class="btn btn-primary custom-button2" value="Bekijk deze sporthal" />
+                </form>
+            </div>
+        </div>
+    }
+
+    else
+    {
+        <br />
+
+    }
+</div>
+
+<div class="container content" >
+    @foreach (var p in Model.SportsHalls)
+    {
+        <div>
+            <h3>
+                @p.Name
+            </h3>
+            <br />
+            <h4>Algemene Gegevens:</h4>
+            <p class="custom-text">@p.StreetName   @p.HouseNumber   @p.City</p>
+            <p class="custom-text">@p.Zip</p>
+            <p class="custom-text">@p.Description</p>
+            <br />
+            <h4>Beschikbare sporten:</h4>
+            <p class="custom-text">
+                @foreach (var s in p.SportsHallActivities)
+                {
+                    @s.Activity.Name
+                    @: ,
+
+
+                }
+            </p>
+            <br />
+            <form asp-controller="Halls" asp-action="Hall">
+                <input type="hidden" value="@p.ID" name="ID" />
+                <input type="submit" class="btn btn-primary custom-button2" value="Bekijk deze sporthal" />
+            </form>
+            <form asp-controller="Halls" asp-action="CompareSportsHalls" asp-route-sportsHallId="@Model.SportsHallId.ID" asp-route-secondSportsHallId="@p.ID">
+                <br />
+                <input type="submit" class="btn btn-primary custom-button2" value="Vergelijk" />
+            </form>
+        </div>
+        <hr />
+    }
+</div>
+

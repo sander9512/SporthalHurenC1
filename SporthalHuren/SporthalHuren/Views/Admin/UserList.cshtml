@@ -1,0 +1,45 @@
+﻿@model IEnumerable<SporthalHuren.Models.User>
+
+@{ 
+    Layout = "_AdminLayout";
+    ViewBag.Title = "Bezoekers - Administratieve gegevens";
+}
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>ID</th>
+        <th>Naam</th>
+        <th>Geb. datum</th>
+        <th>Email</th>
+        <th>Locatie</th>
+        <th>Straatnaam</th>
+        <th>Huis Nr.</th>
+        <th>Postcode</th>
+        <th>Functies</th>
+    </tr>
+
+    @foreach(var user in Model)
+    {
+        <tr>
+            <td>@user.ID</td>
+            <td>@user.Name</td>
+            <td>@user.DateOfBirth.ToString("yyyy-MM-dd")</td>
+            <td>@user.Email</td>
+            <td>@user.City</td>
+            <td>@user.StreetName</td>
+            <td>@user.HouseNumber</td>
+            <td>@user.Zip</td>
+            <td>
+                <form asp-action="DeleteUser" method="post">
+                    <a asp-action="EditUser" asp-route-userId="@user.ID" class="btn btn-sm btn-warning">
+                        Bewerk
+                    </a>
+                    <input type="hidden" name="ID" value="@user.ID" />
+                    <button asp-action="DeleteUser" class="btn btn-sm btn-danger">
+                        Verwijder
+                    </button>
+                </form>
+            </td>
+        </tr>
+    }
+</table>

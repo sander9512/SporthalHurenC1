@@ -1,0 +1,53 @@
+﻿@model IEnumerable<SporthalHuren.Models.Proprietor>
+
+@{ 
+    Layout = "_AdminLayout";
+    ViewBag.Title = "Exploitanten - Administratieve gegevens";
+}
+
+    <a asp-action="CreateProprietor" class="btn btn-primary pull-right admin-button-create">
+    Toevoegen
+</a>
+
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>ID</th>
+        <th>Naam</th>
+        <th>Email</th>
+        <th>Tel Nr.</th>
+        <th>Locatie</th>
+        <th>Straat</th>
+        <th>Huis Nr.</th>
+        <th>Postcode</th>
+        <th>Geb. datum</th>
+        <th>Functies</th>
+    </tr>
+
+    @foreach (var prop in Model)
+    {
+        <tr>
+            <td>@prop.ID</td>
+            <td>@prop.Name</td>
+            <td>@prop.Email</td>
+            <td>@prop.Phone</td>
+            <td>@prop.City</td>
+            <td>@prop.StreetName</td>
+            <td>@prop.HouseNumber</td>
+            <td>@prop.Zip</td>
+            <td>@prop.DateOfBirth.ToString("yyyy-MM-dd")</td>
+            <td>
+                <form asp-action="DeleteProprietor" method="post">
+                    <a asp-action="EditProprietor" class="btn btn-sm btn-warning"  asp-route-proprietorId="@prop.ID">
+                        Bewerk
+                    </a>
+                    <input type="hidden" name="ProprietorID" value="@prop.ID" />
+                    <button asp-action="DeleteProprietor" class="btn btn-sm btn-danger">
+                        Verwijder
+                    </button>
+                </form>
+            </td>
+        </tr>
+    }
+</table>
+

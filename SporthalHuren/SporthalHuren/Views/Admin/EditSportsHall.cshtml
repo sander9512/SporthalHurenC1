@@ -1,0 +1,123 @@
+﻿@model SporthalHuren.Models.ViewModels.EditSportsHallFormViewModel
+@{ 
+    Layout = "_AdminLayout";
+    ViewBag.Title = "Sporthal bewerken";
+}
+
+<div class="container content">
+    <form asp-action="EditSportsHall" method="post">
+        <input type="hidden" asp-for="@Model.Hall.ID" />
+        <div asp-validation-summary="All"></div>
+        <div class="form-group">
+            <label asp-for="@Model.Hall.Name">Naam</label>
+            <input asp-for="@Model.Hall.Name" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Hall.Description"></label>
+            <input asp-for="@Model.Hall.Description" class="form-control" rows="3" />
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Hall.Phone">Telefoonnummer</label>
+            <input asp-for="@Model.Hall.Phone" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Hall.City">Stad</label>
+            <input asp-for="@Model.Hall.City" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Hall.StreetName">Straat</label>
+            <input asp-for="@Model.Hall.StreetName" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Hall.HouseNumber">Huisnummer</label>
+            <input asp-for="@Model.Hall.HouseNumber" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Hall.Zip">Postcode</label>
+            <input asp-for="@Model.Hall.Zip" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="@Model.Hall.Times">Openingstijden</label>
+            <table class="table table-bordered">
+                @foreach (var t in Model.Hall.Times)
+            {
+                    <tr>
+                        <th>@t.Day</th>
+                    </tr>
+                    <tr>
+                        <td>@t.TimeOpen - @t.TimeClose</td>
+                    </tr>
+                }
+            </table>
+            <a class="btn btn-sm btn-warning" asp-for="@Model.Hall.Times" asp-action="EditHallTimes" asp-route-sportsHallId="@Model.Hall.ID">
+                Bewerk
+            </a>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="@Model.Hall.SportsHallFacilities">Faciliteiten</label>
+            <ul>
+                @foreach (var f in Model.Hall.SportsHallFacilities)
+            {
+                    <li>@f.Facility.Name</li>
+
+                }
+            </ul>
+            <a class="btn btn-sm btn-warning" asp-for="@Model.Hall.SportsHallFacilities" asp-action="EditHallFacilities" asp-route-sportsHallId="@Model.Hall.ID">
+                Bewerk
+            </a>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="@Model.Hall.SportsHallActivities">Activiteiten</label>
+            <ul>
+                @foreach (var a in Model.Hall.SportsHallActivities)
+            {
+                    <li>@a.Activity.Name</li>
+
+                }
+            </ul>
+            <a class="btn btn-sm btn-warning" asp-for="@Model.Hall.SportsHallActivities" asp-action="EditHallActivities" asp-route-sportsHallId="@Model.Hall.ID">
+                Bewerk
+            </a>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="@Model.Hall.Rooms">Ruimtes</label>
+            <ul>
+                @foreach (var r in Model.Hall.Rooms)
+                {
+                    <li>@r.RoomNumber</li>
+
+                }
+            </ul>
+            <a class="btn btn-sm btn-warning" asp-for="@Model.Hall.Rooms" asp-action="EditHallRooms" asp-route-sportsHallId="@Model.Hall.ID">
+                Bewerk
+            </a>
+        </div>
+
+        <div class="form-group">
+            <label>Eigenaar</label>
+
+            <select class="form-control" name="SelectedProprietor">
+                <option value="">@Model.Hall.Proprietor.Name</option>
+                @foreach (var p in Model.Proprietors)
+                {
+                    <option value=@p.ID>@p.Name</option>
+
+                }
+            </select>
+
+        </div>
+        <hr />
+        <div class="text-center">
+            <button class="btn btn-primary" type="submit">
+                Opslaan
+            </button>
+            <a asp-action="ProprietorList" class="btn btn-default">
+                Annuleren
+            </a>
+        </div>
+    </form>
+</div>

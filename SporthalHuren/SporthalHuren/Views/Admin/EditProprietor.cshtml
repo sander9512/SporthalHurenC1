@@ -1,0 +1,78 @@
+﻿@model  Proprietor
+
+@{ 
+    Layout = "_AdminLayout";
+    ViewBag.Title = "Exploitant bewerken"; 
+}
+
+<div class="container content">
+    <form asp-action="EditProprietor" method="post">
+        <input type="hidden" asp-for="@Model.ID" />
+        <div class="form-group">
+            <label asp-for="@Model.Name">Naam</label>
+            <div><span asp-validation-for="@Model.Name" class="text-danger"></span></div>
+            <input asp-for="@Model.Name" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Email">E-mailadres</label>
+            <div><span asp-validation-for="@Model.Email" class="text-danger"></span></div>
+            <input asp-for="@Model.Email" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Phone">Telefoon</label>
+            <div><span asp-validation-for="@Model.Phone" class="text-danger"></span></div>
+            <input asp-for="@Model.Phone" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.City">Woonplaats</label>
+            <div><span asp-validation-for="@Model.City" class="text-danger"></span></div>
+            <input asp-for="@Model.City" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.StreetName">Straat</label>
+            <div><span asp-validation-for="@Model.StreetName" class="text-danger"></span></div>
+            <input asp-for="@Model.StreetName" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.HouseNumber">Huisnummer</label>
+            <div><span asp-validation-for="@Model.HouseNumber" class="text-danger"></span></div>
+            <input asp-for="@Model.HouseNumber" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Zip">Postcode</label>
+            <div><span asp-validation-for="@Model.Zip" class="text-danger"></span></div>
+            <input asp-for="@Model.Zip" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.DateOfBirth">Geboortedatum</label>
+            <div><span asp-validation-for="@Model.DateOfBirth" class="text-danger"></span></div>
+            <input type="date" asp-for="@Model.DateOfBirth" class="form-control" />
+        </div>
+        <div class="text-center">
+            <button class="btn btn-primary" type="submit">
+                Opslaan
+            </button>
+            <a asp-action="ProprietorList" class="btn btn-default">
+                Annuleren
+            </a>
+        </div>
+
+        @*<div class="form-group">
+                <label asp-for="@Model.Proprietor.Halls">Sporthallen</label>
+                <table class="table table-bordered">
+                    @foreach (var h in Model.Proprietor.Halls)
+                    {
+                        <tr>
+                            <th>@h.ID</th>
+                        </tr>
+                        <tr>
+                            <td>@h.Name</td>
+                        </tr>
+                    }
+                </table>
+                <a class="btn btn-sm btn-warning" asp-for="@Model.Proprietor.Halls" asp-action="EditHallTimes">
+                    Bewerk
+                </a>
+            </div>*@
+    </form>
+</div>

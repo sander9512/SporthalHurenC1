@@ -1,0 +1,42 @@
+﻿@model UserBookingViewModel
+@{
+    ViewData["Title"] = "Mijn Reserveringen";
+    Layout = "_UserLayout";
+
+}
+
+<div class="container text-center content">
+    <h2>Bekijk reserveringen</h2>
+    <br />
+    <form asp-action="CheckReservation" asp-controller="NormalUser" method="post">
+        <br />
+        <div class="form-group">
+            @if (Model.Bookings.Count() == 0)
+            {
+
+                <h4>Geen boekingen gevonden</h4>
+            }
+            else
+            {
+                <select class="form-control" id="CheckReservation" name="SelectedBooking">
+                    @foreach (var p in Model.Bookings)
+                    {
+                        <option value=@p.ID>@p.Date.ToString("dd/MM/yyyy") @p.StartTime.ToString("HH:mm"), @p.Hall.Name te @p.Hall.City </option>
+
+                    }
+                </select>
+                <br />
+                <small id="SportsHelp" class="form-text text-muted">Bekijk details van de gekozen resererving</small>
+                <div class="form-group">
+                    
+                    <br />
+                    <button type="submit" class="btn-primary btn custom-button2">
+                        Bekijk
+                    </button>
+                </div>
+
+            }
+        </div>
+    </form>
+    <br />
+</div>

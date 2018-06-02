@@ -1,0 +1,44 @@
+﻿@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+    Layout = "_LoginLayout";
+}
+
+<div class="container text-center content">
+
+    <form asp-action="Register" asp-controller="Account" method="post">
+        <span asp-validation-for="Email" class="text-danger"></span>
+        <div class="form-group">            
+            <label asp-for="Email">E-mail adres:</label>
+            <br />
+            <input asp-for="Email" class="form-control" id="input-email" placeholder="example@email.com" />
+        </div>
+        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+        <div class="form-group">
+            <label asp-for="PhoneNumber">Telefoonnummer:</label>
+            <br />
+            <input asp-for="PhoneNumber" class="form-control" id="input-email" placeholder="0612345678" />
+        </div>
+        <span asp-validation-for="Password" class="text-danger"></span>
+        <div class="form-group">
+            <label asp-for="Password">Wachtwoord:</label>
+            <br />
+            <input asp-for="Password" class="form-control" id="input-password" placeholder="Example1!" />
+        </div>
+        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+        <div class="form-group">
+            <label asp-for="ConfirmPassword">Bevestig wachtwoord:</label>
+            <br />
+            <input asp-for="ConfirmPassword" class="form-control" id="input-password" />
+        </div>
+        <div class="form-group">
+            <label>Functie:</label>
+            <br />
+            <select class="form-control" id="input-email" name="SelectedRole">
+                <option value="NormalUser">Gebruiker</option>
+                <option value="Proprietor">Verhuurder</option>
+            </select>
+        </div>
+        <button class="btn btn-primary custom-button2" type="submit">Registreer</button>
+    </form>
+</div>

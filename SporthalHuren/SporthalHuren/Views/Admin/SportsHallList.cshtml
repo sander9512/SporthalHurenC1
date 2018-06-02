@@ -1,0 +1,47 @@
+﻿@model IEnumerable<SportsHall>
+    
+
+@{
+    ViewBag.Title = "Sporthallen - Administratieve gegevens";
+    Layout = "_AdminLayout";
+}
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>ID</th>
+        <th>Naam</th>
+        <th>Tel Nr.</th>
+        <th>Locatie</th>
+        <th>Straatnaam</th>
+        <th>Huis Nr.</th>
+        <th>Postcode</th>
+        <th>Eigenaar</th> 
+        <th>Functies</th>
+    </tr>
+    @foreach (var hall in Model)
+    {
+
+        <tr>
+            <td>@hall.ID</td>
+            <td>@hall.Name</td>
+            <td>@hall.Phone</td>
+            <td>@hall.City</td>
+            <td>@hall.StreetName</td>
+            <td>@hall.HouseNumber</td>
+            <td>@hall.Zip</td>
+            <td>@hall.Proprietor.Name</td>
+            <td>
+                <form asp-action="DeleteSportsHall" method="post">
+                    <a asp-action="EditSportsHall" class="btn btn-sm btn-warning" asp-route-sportsHallId="@hall.ID">
+                        Bewerk
+                    </a>
+                    <input type="hidden" name="ID" value="@hall.ID" />
+                    <a asp-action="DeleteSportsHall" class="btn btn-sm btn-danger">
+                        Verwijder
+                    </a>
+                </form>
+            </td>
+        </tr>
+    }
+</table>
+

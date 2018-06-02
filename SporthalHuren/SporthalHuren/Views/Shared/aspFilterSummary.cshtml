@@ -1,0 +1,12 @@
+﻿@model SporthalHuren.Models.SportsHall
+
+<form asp-controller="Halls" asp-action="Hall">
+    <input type="hidden" value="@Model.ID" name="ID" />
+    <input type="submit" class="btn btn-primary custom-button2" value="Bekijk deze sporthal" />
+</form>
+
+<form asp-controller="Halls" asp-action="CompareSportsHalls" asp-route-sportsHallId="@Model.ID">
+    <br />
+    <input type="hidden" value="@Model.ID" name="ID" />
+    <input type="submit" class="btn btn-primary custom-button2" value="Vergelijk Hal" />
+</form>
